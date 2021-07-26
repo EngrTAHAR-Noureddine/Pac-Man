@@ -1,0 +1,132 @@
+body,html {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.rotate{
+    display: none;
+}
+nav{
+    height: 10%;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+.title{
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+    font-size:xx-large;
+    display: inline-grid;
+}
+
+.container{
+    width: 100%;
+    height: 40%;
+    border-bottom: 0.5px solid black;
+}
+.scores{
+    width: 100%;
+    height: 25%;
+    border-bottom: 0.5px solid black;
+}
+
+.field{
+    width: 100%;
+    height: 75%;
+    display: inline-flex;
+    justify-content: center;
+}
+.game{
+    height: 100%;
+    width: 80%;    
+    background-color: rgb(196, 50, 50);
+    display: inline-flex;
+    justify-content: flex-start;
+    
+    
+}
+.pac-man{
+    height: 100%;
+    width: 10%;
+    background-color: rgba(255, 255, 255, 0.493);
+    position: absolute;
+    z-index: 2;
+}
+.field-foods{
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: inline-flex;
+    justify-content: flex-end;
+    background-color: rgb(201, 204, 23);
+}
+.field-food{
+   
+    height: 100%;
+    width: 5%;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+   margin:0px 2px;
+   
+}
+.field-food .food-square{
+    width: 100%;
+    height: 40%;
+    background-color: chartreuse;
+}
+@media only screen and (max-width: 800px){
+
+    .title{
+        width: 50%;
+        height: 100%;
+        font-size: larger;
+    }
+}
+@media only screen and (max-height: 800px){
+
+    .container{
+        height: 20%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+     .container{display: none;}
+    .rotate{
+        width: 100%;
+        height: 90%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size:medium;
+    }
+    .rotate img{
+        width: 5%;
+        height: 5%;
+        display: inline;
+        margin-right:10px ;
+    }
+}
+@media only screen and (max-height: 200px){
+    .container{display: none;}
+   .rotate{
+       width: 100%;
+       height: 90%;
+       display: inline-flex;
+       justify-content: center;
+       align-items: center;
+       text-align: center;
+       font-size:medium;
+   }
+   .rotate img{
+       width: 5%;
+       height: 5%;
+       display: inline;
+       margin-right:10px ;
+   }
+}
