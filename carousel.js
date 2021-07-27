@@ -1,7 +1,7 @@
 var millisecond =1000;
 
 var pacMan = document.querySelector('.pac-man').getBoundingClientRect();
-var PacManBar = (pacMan.right - pacMan.left)/10;
+var PacManCenter =((pacMan.right - pacMan.left)/2)*(-1);
 var fieldFoods = document.querySelector('.field-foods').getBoundingClientRect();
 var leftFieldFoods = fieldFoods.left;
 
@@ -27,7 +27,7 @@ function carousel() {
         
         var rect = document.querySelector('.firstChild').getBoundingClientRect();
     
-    if((rect.left - leftFieldFoods)<PacManBar){
+    if((rect.left - pacMan.right)<PacManCenter){
         score(parent.firstElementChild);
         parent.firstElementChild.remove();
     } 
@@ -36,7 +36,7 @@ var scoreVar = 0;
 function score(element){
     if(element.id === "food"){
         scoreVar++;
-        console.log("score : ",scoreVar,"milli : ",millisecond);
+        //console.log("score : ",scoreVar,"milli : ",millisecond);
         speedEat();
         clearInterval(myVar);
         myVar = setInterval(carousel, millisecond);
@@ -57,6 +57,47 @@ function speedEat(){
 }
 
 var myVar = setInterval(carousel, millisecond);
+
+document.addEventListener('keydown',pressKeydown);
+document.addEventListener('keyup',pressKeyup);
+function pressKeyup(e){
+    if(e.keyCode === 32){
+        document.querySelector('.pac-man').style.background = "rgba(255, 255, 255, 0.493)";
+    }
+
+}
+function pressKeydown(e){
+    if(e.keyCode === 32){
+        document.querySelector('.pac-man').style.background = "rgba(255, 0, 0, 0.57)";
+    }
+
+}
+
+var testDistance = setInterval(testDistance, 1);
+
+function testDistance(){
+    var rect;
+    let distance;
+    if(document.querySelector('.firstChild')!==null){
+        rect= document.querySelector('.firstChild').getBoundingClientRect();
+    
+        distance = rect.left -pacMan.right;
+    }else distance = NaN;
+console.log(document.querySelector('.pac-man').style.background);
+    if(distance<1){
+        if(document.querySelector('.pac-man').style.background === "rgba(255, 0, 0, 0.57)"){
+            if(document.querySelector('.field-foods').firstElementChild.id === "ghost"){
+                clearInterval(myVar);
+                clearInterval(testDistance);
+                alert("loose is opened");
+            }
+        }else{
+            clearInterval(myVar);
+            clearInterval(testDistance);
+            alert("loose is close");
+        }
+    }
+}
 
 
 
