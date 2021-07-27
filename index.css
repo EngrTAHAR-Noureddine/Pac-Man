@@ -72,13 +72,19 @@ nav{
     display: flex;
     align-items: center;
    margin:0px 2px;
-   
+
 }
+.white{
+    background-color: white;
+}
+
 .field-food .food-square{
     width: 100%;
     height: 40%;
     background-color: chartreuse;
 }
+
+
 @media only screen and (max-width: 800px){
 
     .title{
