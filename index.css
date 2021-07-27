@@ -27,11 +27,26 @@ nav{
     width: 100%;
     height: 40%;
     border-bottom: 0.5px solid black;
+    padding-bottom: 10px;
 }
 .scores{
     width: 100%;
     height: 25%;
     border-bottom: 0.5px solid black;
+    display: inline-block;
+    font-size: xx-small;
+}
+
+.mostScore{
+    float: left;
+    margin-left: 10px;
+}
+.mostScore p ,.mostScore span ,.total-score p ,.total-score span{
+    display: contents;
+}
+.total-score{
+    float: right;
+    margin-right: 10px;
 }
 
 .field{
@@ -39,6 +54,7 @@ nav{
     height: 75%;
     display: inline-flex;
     justify-content: center;
+    
 }
 .game{
     height: 100%;

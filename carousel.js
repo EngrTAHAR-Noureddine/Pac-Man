@@ -15,24 +15,22 @@ function carousel() {
     const ghost = `<div class="field-food white" id="ghost">
                     <div class="food-square"></div>
                 </div>`;            
-    //let children = document.getElementsByClassName('field-food');
-
     const parent = document.querySelector('.field-foods');
     i = Math.floor(Math.random() * 10);
         if((i % 2) === 0){
              parent.innerHTML += food;  
         }else{ parent.innerHTML += ghost;  }   
-       // console.log("milli : ",millisecond);
+      
         
         
      if(parent.firstElementChild.className.indexOf("firstChild")<0) parent.firstElementChild.className += " firstChild";
         
         var rect = document.querySelector('.firstChild').getBoundingClientRect();
-        //console.log(rect.left - leftFieldFoods);
+    
     if((rect.left - leftFieldFoods)<PacManBar){
         score(parent.firstElementChild);
         parent.firstElementChild.remove();
-    } //clearInterval(myVar);
+    } 
 }
 var scoreVar = 0;
 function score(element){
@@ -42,6 +40,7 @@ function score(element){
         speedEat();
         clearInterval(myVar);
         myVar = setInterval(carousel, millisecond);
+        document.getElementById('score').textContent = scoreVar;
     }
 }
 
@@ -58,6 +57,8 @@ function speedEat(){
 }
 
 var myVar = setInterval(carousel, millisecond);
+
+
 
 
  
