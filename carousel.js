@@ -18,25 +18,24 @@ function carousel() {
     const parent = document.querySelector('.field-foods');
     i = Math.floor(Math.random() * 10);
         if((i % 2) === 0){
-             parent.innerHTML += food;  
+             parent.innerHTML += ghost;//food;  
         }else{ parent.innerHTML += ghost;  }   
       
         
         
      if(parent.firstElementChild.className.indexOf("firstChild")<0) parent.firstElementChild.className += " firstChild";
         
-        var rect = document.querySelector('.firstChild').getBoundingClientRect();
+        // var rect = document.querySelector('.firstChild').getBoundingClientRect();
     
-    if((rect.left - pacMan.right)<PacManCenter){
-        score(parent.firstElementChild);
-        parent.firstElementChild.remove();
-    } 
+    // if((rect.right - pacMan.right) <0){
+    //     score(parent.firstElementChild);
+    //     parent.firstElementChild.remove();
+    // } 
 }
 var scoreVar = 0;
 function score(element){
     if(element.id === "food"){
         scoreVar++;
-        //console.log("score : ",scoreVar,"milli : ",millisecond);
         speedEat();
         clearInterval(myVar);
         myVar = setInterval(carousel, millisecond);
@@ -58,45 +57,97 @@ function speedEat(){
 
 var myVar = setInterval(carousel, millisecond);
 
+// "rgba(255, 255, 255, 0.493)" => "blue"
+// "rgba(255, 0, 0, 0.57)" => "red"
+
 document.addEventListener('keydown',pressKeydown);
 document.addEventListener('keyup',pressKeyup);
 function pressKeyup(e){
     if(e.keyCode === 32){
-        document.querySelector('.pac-man').style.background = "rgba(255, 255, 255, 0.493)";
+        document.querySelector('.pac-man').style.background = "blue";
     }
 
 }
 function pressKeydown(e){
     if(e.keyCode === 32){
-        document.querySelector('.pac-man').style.background = "rgba(255, 0, 0, 0.57)";
+        document.querySelector('.pac-man').style.background = "red";
     }
 
 }
 
 var testDistance = setInterval(testDistance, 1);
 
+function init(){
+    document.querySelector('.pac-man').style.background = "blue";
+}
+init();
+
+
+
 function testDistance(){
+
+const parent = document.querySelector('.field-foods');
+const cleanField = document.querySelector('.clean').getBoundingClientRect();
+
     var rect;
-    let distance;
+    let distancePac , distanceClean;
     if(document.querySelector('.firstChild')!==null){
         rect= document.querySelector('.firstChild').getBoundingClientRect();
-    
-        distance = rect.left -pacMan.right;
-    }else distance = NaN;
-console.log(document.querySelector('.pac-man').style.background);
-    if(distance<1){
-        if(document.querySelector('.pac-man').style.background === "rgba(255, 0, 0, 0.57)"){
-            if(document.querySelector('.field-foods').firstElementChild.id === "ghost"){
+        distancePac = rect.left -pacMan.right;
+        distanceClean = rect.left - cleanField.right;
+    }else {distancePac = 1; distanceClean = 1;}
+
+// console.log("distancePac : ",distancePac);
+// console.log("distanceClean : ",distanceClean);
+
+if((parent.firstElementChild)&&(parent.firstElementChild.id === "ghost")){
+    if(distancePac <=0){
+        if(distancePac >= (-1)){
+            console.log("im in ", parent.firstElementChild);
+            
+            if(document.querySelector('.pac-man').style.background === "blue"){
+                parent.firstElementChild.remove();
+                if(parent.firstElementChild.className.indexOf("firstChild")<0) parent.firstElementChild.className += " firstChild";      
+            }
+        }
+        
+    }else if(distanceClean<=0){
+        if(document.querySelector('.pac-man').style.background === "red"){
                 clearInterval(myVar);
                 clearInterval(testDistance);
                 alert("loose is opened");
-            }
-        }else{
-            clearInterval(myVar);
-            clearInterval(testDistance);
-            alert("loose is close");
         }
     }
+}
+
+
+
+
+    // if(distance<=0){
+        
+        
+    //     if(document.querySelector('.pac-man').style.background === "rgba(255, 0, 0, 0.57)"){
+    //         if(document.querySelector('.field-foods').firstElementChild.id === "ghost"){
+    //             clearInterval(myVar);
+    //             clearInterval(testDistance);
+    //             alert("loose is opened");
+    //         }
+    //     }else{
+    //         if(document.querySelector('.field-foods').firstElementChild.id === "food"){
+    //             clearInterval(myVar);
+    //             clearInterval(testDistance);
+    //             alert("loose is close");
+    //         }
+            
+    //     }
+        
+    // }
+    // var cleanField = document.querySelector('.clean').getBoundingClientRect();
+    // if((rect.left - cleanField.right) <=25){
+    //     score(parent.firstElementChild);
+    //     parent.firstElementChild.remove();
+    //     if(parent.firstElementChild.className.indexOf("firstChild")<0) parent.firstElementChild.className += " firstChild";
+    // }
 }
 
 
